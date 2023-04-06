@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Test
           command: mvn test
-      - codecov/upload:
+      - codecov/upload
 
 workflows:
   build_and_test:
