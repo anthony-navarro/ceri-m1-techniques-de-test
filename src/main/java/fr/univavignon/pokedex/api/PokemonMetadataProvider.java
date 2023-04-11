@@ -22,7 +22,7 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
         PokemonMetadata charmander = new PokemonMetadata(2,"Salamèche",203,185,229);
         PokemonMetadata ninetales = new PokemonMetadata(36,"Feunard",251,249,299);
 
-        for (int i = 0; i < (this.pokemonList.size() - 1); i++)
+        for (int i = 0; i < 151; i++)
         {
             if (i == 2)
             {

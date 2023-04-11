@@ -1,23 +1,32 @@
 package fr.univavignon.pokedex.api;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 class IPokemonTrainerFactoryTest {
-    IPokemonTrainerFactory mockIPokemonTrainerFactory = Mockito.mock(IPokemonTrainerFactory.class);
-    IPokedexFactory mockIPokedexFactory = Mockito.mock(IPokedexFactory.class);
-    IPokedex mockIPokedex = Mockito.mock(IPokedex.class);
-    PokemonTrainer mockPokemonTrainer = new PokemonTrainer("Anthony", Team.VALOR, mockIPokedex);
+    IPokemonTrainerFactory pokemonTrainerFactory = new PokemonTrainerFactory();
+    IPokemonFactory pokemonFactory = new PokemonFactory();
+    IPokedexFactory pokedexFactory = new PokedexFactory();
+    IPokemonMetadataProvider pokemonMetadataProvider = PokemonMetadataProvider.getPokemonMetadataProvider();
+    IPokedex pokedex = new Pokedex(pokemonMetadataProvider, pokemonFactory);
+    PokemonTrainer pokemonTrainer;
+    PokemonTrainer pokemonTrainerTest;
 
+
+    @BeforeEach
+    public void setup() throws PokedexException {
+        pokemonTrainer = new PokemonTrainer("Anthony", Team.VALOR, pokedex);
+        pokemonTrainerTest = pokemonTrainerFactory.createTrainer("Anthony",  Team.VALOR, pokedexFactory);
+
+    }
 
     @Test
     public void ShouldCreatePokemonTrainer()
     {
-        when(mockIPokemonTrainerFactory.createTrainer("Anthony", Team.VALOR, mockIPokedexFactory)).thenReturn(mockPokemonTrainer);
-        PokemonTrainer pokemonTrainer = mockIPokemonTrainerFactory.createTrainer("Anthony",  Team.VALOR, mockIPokedexFactory);
-        assertEquals(mockPokemonTrainer, pokemonTrainer);
+        assertEquals(pokemonTrainer.getName(), pokemonTrainerTest.getName());
+        assertEquals(pokemonTrainer.getTeam(), pokemonTrainerTest.getTeam());
+        assertEquals(pokemonTrainer.getPokedex().getClass(), pokemonTrainerTest.getPokedex().getClass());
     }
 }

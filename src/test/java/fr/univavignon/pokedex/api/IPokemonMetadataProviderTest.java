@@ -2,25 +2,34 @@ package fr.univavignon.pokedex.api;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 class IPokemonMetadataProviderTest
 {
-    IPokemonMetadataProvider mockIPokemonMetadataProvider = Mockito.mock(IPokemonMetadataProvider.class);
-    Pokemon charmander = new Pokemon(3,"Salamèche",203,185,229,219,282,2500,6,100);
+    IPokemonMetadataProvider pokemonMetadataProvider = PokemonMetadataProvider.getPokemonMetadataProvider();
+    PokemonMetadata charmanderData;
+    Pokemon charmander;
+
+    @BeforeEach
+    public void setup() throws PokedexException {
+        charmander = new Pokemon(2,"Salamèche",203,185,229,219,282,2500,6,100);
+        charmanderData = pokemonMetadataProvider.getPokemonMetadata(2);
+    }
+    @Test
+    public void shouldGetPokemonMetadataCharmander()
+    {
+        assertEquals(charmander.getIndex(), charmanderData.getIndex());
+        assertEquals(charmander.getName(), charmanderData.getName());
+        assertEquals(charmander.getAttack(), charmanderData.getAttack());
+        assertEquals(charmander.getDefense(), charmanderData.getDefense());
+        assertEquals(charmander.getStamina(), charmanderData.getStamina());
+    }
 
     @Test
-    public void shouldGetPokemonMetadataCharmander() throws PokedexException
+    public void shouldThrowWhenIndexTooLowOrHigh()
     {
-        when(mockIPokemonMetadataProvider.getPokemonMetadata(3)).thenReturn(charmander);
-        PokemonMetadata mockMetaData = mockIPokemonMetadataProvider.getPokemonMetadata(3);
-        assertEquals(3, mockMetaData.getIndex());
-        assertEquals("Salamèche", mockMetaData.getName());
-        assertEquals(203, mockMetaData.getAttack());
-        assertEquals(185, mockMetaData.getDefense());
-        assertEquals(229, mockMetaData.getStamina());
+        assertThrows(PokedexException.class, () -> pokemonMetadataProvider.getPokemonMetadata(-1));
+        assertThrows(PokedexException.class, () -> pokemonMetadataProvider.getPokemonMetadata(151));
     }
 }

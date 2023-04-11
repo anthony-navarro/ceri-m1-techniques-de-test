@@ -2,42 +2,41 @@ package fr.univavignon.pokedex.api;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.when;
+
 
 class IPokemonFactoryTest
 {
-    IPokemonFactory mockIPokemonFactory = Mockito.mock(IPokemonFactory.class);
-    Pokemon charmander = new Pokemon(3,"Salamèche",203,185,229,219,282,2500,6,100);
+    IPokemonFactory pokemonFactory = new PokemonFactory();
+    Pokemon charmander;
+    Pokemon charmanderFactory;
 
-    @BeforeEach
-    public void setup()
-    {
-        when(mockIPokemonFactory.createPokemon(anyInt(), anyInt(), anyInt(), anyInt(), anyInt())).thenAnswer(data -> {
-            int pokemonIndex = data.getArgument(0);
-
-            if(pokemonIndex < 0 || pokemonIndex > 150)
-            {
-                throw new PokedexException("Index du Pokemon incorrect");
-            }
-
-            return charmander;
-        });
-    }
+        @BeforeEach
+        public void setup() throws PokedexException {
+            charmander = new Pokemon(2,"Salamèche",203,185,229,219,282,2500,6,100);
+            charmanderFactory = pokemonFactory.createPokemon(2, 219,282,2500,6);
+        }
     @Test
     public void shouldCreatePokemon()
     {
-        assertEquals(charmander, mockIPokemonFactory.createPokemon(4,219,282,2500,6));
+        assertEquals(charmander.getIndex(), charmanderFactory.getIndex());
+        assertEquals(charmander.getName(), charmanderFactory.getName());
+        assertEquals(charmander.getAttack(), charmanderFactory.getAttack());
+        assertEquals(charmander.getDefense(), charmanderFactory.getDefense());
+        assertEquals(charmander.getStamina(), charmanderFactory.getStamina());
+        assertEquals(charmander.getCp(), charmanderFactory.getCp());
+        assertEquals(charmander.getHp(), charmanderFactory.getHp());
+        assertEquals(charmander.getDust(), charmanderFactory.getDust());
+        assertEquals(charmander.getCandy(), charmanderFactory.getCandy());
+        assertEquals(charmander.getCandy(), charmanderFactory.getCandy());
     }
 
     @Test
     public void shouldThrowWhenIndexTooLowOrHigh()
     {
-        assertThrows(PokedexException.class, () -> mockIPokemonFactory.createPokemon(-1,219,282,2500,6));
-        assertThrows(PokedexException.class, () -> mockIPokemonFactory.createPokemon(151,219,282,2500,6));
+        assertThrows(PokedexException.class, () -> pokemonFactory.createPokemon(-1,219,282,2500,6));
+        assertThrows(PokedexException.class, () -> pokemonFactory.createPokemon(151,219,282,2500,6));
     }
 
 }
