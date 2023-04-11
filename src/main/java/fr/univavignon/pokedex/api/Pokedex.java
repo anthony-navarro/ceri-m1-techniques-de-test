@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Pokedex implementation.
+ *
+ * @author an
+ */
 public class Pokedex implements IPokedex {
 
     private IPokemonMetadataProvider pokemonMetadataProvider;
@@ -23,13 +28,12 @@ public class Pokedex implements IPokedex {
     @Override
     public int addPokemon(Pokemon pokemon) {
         this.pokemonList.add(pokemon);
-        return this.pokemonList .lastIndexOf(pokemon);
+        return this.pokemonList.lastIndexOf(pokemon);
     }
 
     @Override
     public Pokemon getPokemon(int id) throws PokedexException {
-        if(id < 0 || id > (this.pokemonList.size() - 1))
-        {
+        if (id < 0 || id > (this.pokemonList.size() - 1)) {
             throw new PokedexException("Index du Pokemon incorrect");
         }
 

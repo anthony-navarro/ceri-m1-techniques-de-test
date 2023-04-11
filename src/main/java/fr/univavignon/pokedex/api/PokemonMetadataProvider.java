@@ -2,6 +2,12 @@ package fr.univavignon.pokedex.api;
 
 import java.util.ArrayList;
 
+/**
+ * PokemonMetadataProvider implementation.
+ *
+ *
+ * @author an
+ */
 public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 
     private static PokemonMetadataProvider pokemonMetadataProvider;
@@ -9,29 +15,27 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 
     private PokemonMetadataProvider() {}
 
+    /** Singleton. **/
     public static synchronized PokemonMetadataProvider getPokemonMetadataProvider() {
-        if (pokemonMetadataProvider == null)
-        {
+        if (pokemonMetadataProvider == null) {
             pokemonMetadataProvider = new PokemonMetadataProvider();
             pokemonMetadataProvider.generateList();
         }
 
         return pokemonMetadataProvider;
     }
+
     private void generateList() {
         PokemonMetadata charmander = new PokemonMetadata(2,"Salamèche",203,185,229);
         PokemonMetadata ninetales = new PokemonMetadata(36,"Feunard",251,249,299);
 
-        for (int i = 0; i < 151; i++)
-        {
-            if (i == 2)
-            {
+        for (int i = 0; i < 151; i++) {
+            if (i == 2) {
                 this.pokemonList.add(charmander);
                 continue;
             }
 
-            if (i == 133)
-            {
+            if (i == 133) {
                 this.pokemonList.add(ninetales);
                 continue;
             }
@@ -43,8 +47,7 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 
     @Override
     public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
-        if(index < 0 || index > (this.pokemonList.size() - 1))
-        {
+        if (index < 0 || index > (this.pokemonList.size() - 1)) {
             throw new PokedexException("Index du Pokemon incorrect");
         }
 

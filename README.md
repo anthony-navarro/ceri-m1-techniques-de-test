@@ -1,12 +1,13 @@
 # UCE Génie Logiciel Avancé : Techniques de tests
 
-## Badges (TP4)
+## Badges
 
 ![namebadge](https://img.shields.io/static/v1?label=Nom&message=Anthony%20NAVARRO&color=orange)
 ![groupbadge](https://img.shields.io/static/v1?label=Groupe&message=ILSEN-ALT-Gr1&color=yellow)
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/anthony-navarro/ceri-m1-techniques-de-test/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/anthony-navarro/ceri-m1-techniques-de-test/tree/master)
-[![codecov](https://codecov.io/gh/anthony-navarro/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=4XQPG8194S)](https://codecov.io/gh/anthony-navarro/ceri-m1-techniques-de-test)
 
+[![codecov](https://codecov.io/gh/anthony-navarro/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=4XQPG8194S)](https://codecov.io/gh/anthony-navarro/ceri-m1-techniques-de-test)
+![Checkstyle](./docs/badges/checkstyle-result.svg)
 ## Introduction
 
 Vous allez à travers ces projet mettre en application une partie des aspects évoqués en cours vis à vis des techniques de tests.  
