@@ -83,4 +83,51 @@ class IPokedexTest {
 
         assertEquals(pokemonList.get(0).getIndex(), charmander.getIndex());
     }
+
+    @Test
+    public void shouldComparatorPokemons() {
+        Comparator<Pokemon> pokemonComparator = (pokemon1, pokemon2) -> {
+
+            if (pokemon1.getIndex() < pokemon2.getIndex())
+            {
+                return -1;
+            }
+            else if (pokemon1.getIndex() == pokemon2.getIndex())
+            {
+                return 0;
+            }
+
+            return 0;
+        };
+
+        int comparatorNotEquals = pokemonComparator.compare(charmander, ninetales);
+        assertEquals(-1, comparatorNotEquals);
+
+        int comparatorEquals = pokemonComparator.compare(charmander, charmander);
+        assertEquals(0, comparatorEquals);
+    }
+
+    @Test
+    public void shouldCreatePokemon() throws PokedexException {
+
+       Pokemon charmanderPokedex =  pokedex.createPokemon(2,219,282,2500,6);
+
+       assertEquals(charmanderPokedex.getIndex(), charmander.getIndex());
+        assertEquals(charmanderPokedex.getCp(), charmander.getCp());
+        assertEquals(charmanderPokedex.getHp(), charmander.getHp());
+        assertEquals(charmanderPokedex.getDust(), charmander.getDust());
+        assertEquals(charmanderPokedex.getCandy(), charmander.getCandy());
+    }
+
+    @Test
+    public void shouldGetPokemonData() throws PokedexException {
+
+        PokemonMetadata charmanderdata =  pokedex.getPokemonMetadata(2);
+
+        assertEquals(charmander.getIndex(), charmanderdata.getIndex());
+        assertEquals(charmander.getName(), charmanderdata.getName());
+        assertEquals(charmander.getAttack(), charmanderdata.getAttack());
+        assertEquals(charmander.getDefense(), charmanderdata.getDefense());
+        assertEquals(charmander.getStamina(), charmanderdata.getStamina());
+    }
 }

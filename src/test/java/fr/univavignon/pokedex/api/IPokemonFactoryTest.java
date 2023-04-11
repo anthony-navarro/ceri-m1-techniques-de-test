@@ -39,4 +39,9 @@ class IPokemonFactoryTest
         assertThrows(PokedexException.class, () -> pokemonFactory.createPokemon(151,219,282,2500,6));
     }
 
+    @Test
+    public void shouldVerifIndex()
+    {
+       assertTrue(charmander.getIndex() > 0 && charmander.getIndex() < 151);
+    }
 }
