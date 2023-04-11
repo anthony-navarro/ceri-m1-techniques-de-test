@@ -29,7 +29,7 @@ class IPokemonFactoryTest
         assertEquals(charmander.getHp(), charmanderFactory.getHp());
         assertEquals(charmander.getDust(), charmanderFactory.getDust());
         assertEquals(charmander.getCandy(), charmanderFactory.getCandy());
-        assertEquals(charmander.getCandy(), charmanderFactory.getCandy());
+        assertEquals(charmander.getIv(), charmanderFactory.getIv());
     }
 
     @Test
