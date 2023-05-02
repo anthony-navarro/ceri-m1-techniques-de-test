@@ -8,6 +8,11 @@
 
 [![codecov](https://codecov.io/gh/anthony-navarro/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=4XQPG8194S)](https://codecov.io/gh/anthony-navarro/ceri-m1-techniques-de-test)
 ![Checkstyle](./docs/badges/checkstyle-result.svg)
+
+## Documentation
+
+Pour accéder à la documentation cliquer [ici](https://anthony-navarro.github.io/ceri-m1-techniques-de-test/fr/univavignon/pokedex/api/package-summary.html)
+
 ## Introduction
 
 Vous allez à travers ces projet mettre en application une partie des aspects évoqués en cours vis à vis des techniques de tests.  
