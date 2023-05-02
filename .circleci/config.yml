@@ -16,13 +16,33 @@ jobs:
           name: Test
           command: mvn test
       - codecov/upload
-  docs-deploy:
+  docs:
     docker:
-      - image: node:8.10.0
+      - image: cimg/base:2021.04
     steps:
       - checkout
-      - - attach_workspace:
-            at: docs/
+      - run:
+          name: OpenJDK-PPA
+          command: sudo add-apt-repository ppa:openjdk-r/ppa
+      - run:
+          name: Update
+          command: sudo apt-get update
+      - run:
+          name: OpenJDK-Install
+          command: sudo apt-get install openjdk-11-jdk-headless -y
+      - run:
+          name: Docs-Build
+          command: javadoc -d docs src/main/java/fr/univavignon/pokedex/api/*
+      - persist_to_workspace:
+          root: .
+          paths: docs
+  docs-deploy:
+    docker:
+      - image: node:20
+    steps:
+      - checkout
+      - attach_workspace:
+          at: docs/
       - run:
           name: Install and configure dependencies
           command:  |
@@ -33,17 +53,17 @@ jobs:
           fingerprints:
             - "36:e5:a1:05:5e:9f:6d:fd:01:29:9c:ce:9d:0d:d8:37"
       - run:
-        name: Deploy docs to gh-pages branch
-        command:
-          gh-pages --dist docs/
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --dist docs/
 
 workflows:
   build_and_test:
     jobs:
-      - build_and_test
-      - build_javadoc:
+      - build_and_test:
+        filters:
+            branches:
+              only: master
+      - docs-deploy:
           requires:
             - build_and_test
-        filters:
-          branches:
-            only: master
+       
