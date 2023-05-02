@@ -63,7 +63,8 @@ workflows:
         filters:
             branches:
               only: master
+      - docs
       - docs-deploy:
           requires:
-            - build_and_test
+            - docs
        
