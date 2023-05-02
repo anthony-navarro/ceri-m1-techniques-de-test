@@ -16,11 +16,34 @@ jobs:
           name: Test
           command: mvn test
       - codecov/upload
+  docs-deploy:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - - attach_workspace:
+            at: docs/
+      - run:
+          name: Install and configure dependencies
+          command:  |
+            npm install -g --silent gh-pages@3.0.0
+            git config --global user.email "anthony.navarro2@alumni.univ-avignon.fr"
+            git config --global user.name "anthony-navarro"
+      - add_ssh_keys:
+          fingerprints:
+            - "36:e5:a1:05:5e:9f:6d:fd:01:29:9c:ce:9d:0d:d8:37"
+      - run:
+        name: Deploy docs to gh-pages branch
+        command:
+          gh-pages --dist docs/
 
 workflows:
   build_and_test:
     jobs:
-      - build_and_test:
+      - build_and_test
+      - build_javadoc:
+          requires:
+            - build_and_test
         filters:
           branches:
             only: master
