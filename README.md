@@ -11,7 +11,7 @@
 
 ## Documentation
 
-Pour accéder à la documentation cliquer [ici](https://anthony-navarro.github.io/ceri-m1-techniques-de-test/fr/univavignon/pokedex/api/package-summary.html)
+Pour accéder à la Javadoc cliquer [ici](https://anthony-navarro.github.io/ceri-m1-techniques-de-test/fr/univavignon/pokedex/api/package-summary.html)
 
 ## Introduction
 
