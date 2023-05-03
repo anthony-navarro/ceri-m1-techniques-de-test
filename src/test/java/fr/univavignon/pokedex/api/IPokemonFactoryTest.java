@@ -12,11 +12,11 @@ class IPokemonFactoryTest
     Pokemon charmander;
     Pokemon charmanderFactory;
 
-        @BeforeEach
-        public void setup() throws PokedexException {
-            charmander = new Pokemon(2,"Salamèche",203,185,229,219,282,2500,6,100);
-            charmanderFactory = pokemonFactory.createPokemon(2, 219,282,2500,6);
-        }
+    @BeforeEach
+    public void setup() throws PokedexException {
+        charmander = new Pokemon(2,"Salamèche",203,185,229,219,282,2500,6,100);
+        charmanderFactory = pokemonFactory.createPokemon(2, 219,282,2500,6);
+    }
     @Test
     public void shouldCreatePokemon()
     {

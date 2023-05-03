@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 class IPokedexTest {
@@ -37,7 +36,8 @@ class IPokedexTest {
     {
         pokedex.addPokemon(charmander);
 
-        assertThrows(PokedexException.class, () -> { pokedex.getPokemon(265); });
+        assertThrows(PokedexException.class, () -> { pokedex.getPokemon(151); });
+        assertThrows(PokedexException.class, () -> { pokedex.getPokemon(-1); });
     }
 
     @Test
@@ -61,50 +61,14 @@ class IPokedexTest {
     }
 
     @Test
-    public void shouldComparatorGetPokemons() {
-        Comparator<Pokemon> pokemonComparator = (pokemon1, pokemon2) -> {
-
-            if (pokemon1.getIndex() < pokemon2.getIndex())
-            {
-                return -1;
-            }
-            else if (pokemon1.getIndex() == pokemon2.getIndex())
-            {
-                return 0;
-            }
-
-            return 0;
-        };
-
+    public void shouldComparatorGetPokemons()
+    {
         pokedex.addPokemon(charmander);
         pokedex.addPokemon(ninetales);
 
-        pokemonList = pokedex.getPokemons(pokemonComparator);
+        pokemonList = pokedex.getPokemons(PokemonComparators.INDEX);
 
         assertEquals(pokemonList.get(0).getIndex(), charmander.getIndex());
-    }
-
-    @Test
-    public void shouldComparatorPokemons() {
-        Comparator<Pokemon> pokemonComparator = (pokemon1, pokemon2) -> {
-
-            if (pokemon1.getIndex() < pokemon2.getIndex())
-            {
-                return -1;
-            }
-            else if (pokemon1.getIndex() == pokemon2.getIndex())
-            {
-                return 0;
-            }
-
-            return 0;
-        };
-
-        int comparatorNotEquals = pokemonComparator.compare(charmander, ninetales);
-        assertEquals(-1, comparatorNotEquals);
-
-        int comparatorEquals = pokemonComparator.compare(charmander, charmander);
-        assertEquals(0, comparatorEquals);
     }
 
     @Test
