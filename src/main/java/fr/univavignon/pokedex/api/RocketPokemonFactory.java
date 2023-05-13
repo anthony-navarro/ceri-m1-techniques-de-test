@@ -12,7 +12,7 @@ import org.apache.commons.collections4.map.UnmodifiableMap;
  */
 public class RocketPokemonFactory implements IPokemonFactory {
 
-    private static final Map<Integer, String> index2name;
+    /* private static final Map<Integer, String> index2name;
 
     static {
         Map<Integer, String> hashMap = new HashMap<Integer, String>();
@@ -31,31 +31,31 @@ public class RocketPokemonFactory implements IPokemonFactory {
             total = total + r;
         }
         return total / 10000;
-    }
+    } */
 
     @Override
     public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
-        String name;
-        if (!index2name.containsKey(index)) {
-            name = index2name.get(0);
-        } else {
-            name = index2name.get(index);
-        }
-        int attack;
-        int defense;
-        int stamina;
-        double iv;
-        if (index < 0) {
-            attack = 1000;
-            defense = 1000;
-            stamina = 1000;
-            iv = 0;
-        } else {
-            attack = RocketPokemonFactory.generateRandomStat();
-            defense = RocketPokemonFactory.generateRandomStat();
-            stamina = RocketPokemonFactory.generateRandomStat();
-            iv = 1;
-        }
-        return new Pokemon(index, name, attack, defense, stamina, cp, hp, dust, candy, iv);
+//        String name;
+//        if (!index2name.containsKey(index)) {
+//            name = index2name.get(0);
+//        } else {
+//            name = index2name.get(index);
+//        }
+//        int attack;
+//        int defense;
+//        int stamina;
+//        double iv;
+//        if (index < 0) {
+//            attack = 1000;
+//            defense = 1000;
+//            stamina = 1000;
+//            iv = 0;
+//        } else {
+//            attack = RocketPokemonFactory.generateRandomStat();
+//            defense = RocketPokemonFactory.generateRandomStat();
+//            stamina = RocketPokemonFactory.generateRandomStat();
+//            iv = 1;
+//         }
+        return new Pokemon(index, "MISSINGNO", 1, 1, 1, cp, hp, dust, candy, 1);
     }
 }
