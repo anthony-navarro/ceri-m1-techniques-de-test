@@ -22,16 +22,16 @@ jobs:
     steps:
       - checkout
       - run:
-          name: OpenJDK-PPA
+          name: Adding OpenJDK-PPA
           command: sudo add-apt-repository ppa:openjdk-r/ppa
       - run:
-          name: Update
+          name: Update apt
           command: sudo apt-get update
       - run:
-          name: OpenJDK-Install
+          name: Installation of OpenJDK
           command: sudo apt-get install openjdk-11-jdk-headless -y
       - run:
-          name: Docs-Build
+          name: Building JavaDocs
           command: javadoc -d docs src/main/java/fr/univavignon/pokedex/api/*
       - persist_to_workspace:
           root: .
@@ -53,7 +53,7 @@ jobs:
           fingerprints:
             - "36:e5:a1:05:5e:9f:6d:fd:01:29:9c:ce:9d:0d:d8:37"
       - run:
-          name: Deploy docs to gh-pages branch
+          name: Deployment of documents in the gh-pages branch
           command: gh-pages --dist docs/
 
 workflows:
