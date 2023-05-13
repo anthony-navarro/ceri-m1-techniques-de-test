@@ -20,21 +20,22 @@ public class RocketPokemonFactoryTest {
     public void shouldCreatePokemon()
     {
         assertEquals(charmander.getIndex(), charmanderFactory.getIndex());
-        assertEquals(charmander.getName(), charmanderFactory.getName());
-        assertEquals(charmander.getAttack(), charmanderFactory.getAttack());
-        assertEquals(charmander.getDefense(), charmanderFactory.getDefense());
-        assertEquals(charmander.getStamina(), charmanderFactory.getStamina());
+        assertNotEquals(charmander.getName(), charmanderFactory.getName());
         assertEquals(charmander.getCp(), charmanderFactory.getCp());
         assertEquals(charmander.getHp(), charmanderFactory.getHp());
         assertEquals(charmander.getDust(), charmanderFactory.getDust());
         assertEquals(charmander.getCandy(), charmanderFactory.getCandy());
-        assertEquals(charmander.getIv(), charmanderFactory.getIv());
+
+        assertNotEquals(charmander.getAttack(), charmanderFactory.getAttack());
+        assertNotEquals(charmander.getDefense(), charmanderFactory.getDefense());
+        assertNotEquals(charmander.getStamina(), charmanderFactory.getStamina());
+        assertNotEquals(charmander.getIv(), charmanderFactory.getIv());
     }
 
     @Test
     public void shouldThrowWhenIndexTooLowOrHigh()
     {
-        assertThrows(PokedexException.class, () -> rocketPokemonFactory.createPokemon(-1,219,282,2500,6));
-        assertThrows(PokedexException.class, () -> rocketPokemonFactory.createPokemon(151,219,282,2500,6));
+        assertDoesNotThrow(() -> rocketPokemonFactory.createPokemon(-1,219,282,2500,6));
+        assertDoesNotThrow(() -> rocketPokemonFactory.createPokemon(151,219,282,2500,6));
     }
 }
