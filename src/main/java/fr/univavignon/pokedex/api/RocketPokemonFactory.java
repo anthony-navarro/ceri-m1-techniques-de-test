@@ -3,7 +3,7 @@ package fr.univavignon.pokedex.api;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import org.apache.commons.collections4.map.UnmodifiableMap;
+//import org.apache.commons.collections4.map.UnmodifiableMap;
 
 /**
  * Factory Rocket creating Pokemon.
