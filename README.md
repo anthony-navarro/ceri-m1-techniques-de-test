@@ -13,38 +13,15 @@
 
 Pour accéder à la Javadoc cliquer [ici](https://anthony-navarro.github.io/ceri-m1-techniques-de-test/fr/univavignon/pokedex/api/package-summary.html)
 
-## Introduction
+## TP6 - Rapport
 
-Vous allez à travers ces projet mettre en application une partie des aspects évoqués en cours vis à vis des techniques de tests.  
-Pour cela nous allons réaliser un projet logiciel de petite taille, en suivant la roadmap suivante : 
-- Setup du projet
-- Mise en place des outils d’intégration continue
-- Écriture des tests unitaires
-- Écriture des mocks, et validation des tests
-- Développement dirigé par les tests
-- Documentation et conventions de style
-- Test d'une implémentation donnée
+Pour commencer, j'ai testé l'implémentation de RocketPokemonFactory avec les mêmes tests que PokemonFactory. 
+Contrairement à PokemonFactory, tous les tests ont échoué pour RocketPokemonFactory.
 
-Le projet consiste à mettre en place un outil d’analyse statistique pour le jeu Pokémon GO.  
-Durant cette série de TPs, le gestionnaire de version Git sera utilisé à foison, à travers la plateforme GitHub. Si vous n’êtes pas à l’aise avec cet outil[^1], [voici](http://rogerdudler.github.io/git-guide/) un petit guide à garder sous la main.
+- Pour le test shouldCreatePokemon : Le résultat attendu était le nom du Pokémon Salamèche, mais c'est MISSINGNO à la place qui a été reçu.
+- Pour le test shouldThrowWhenIndexTooLowOrHigh : Aucune exception (PokedexException) n'a été déclenchée pour des index invalides, c'est-à-dire inférieurs à 0 et supérieurs à 150.
 
-## Sujets
+Après avoir étudié le code de RocketPokemonFactory, je me suis aperçu que la génération des statistiques de l'Attaque, de la Défense et de la Stamina sont aléatoires, ce qui signifie que ces valeurs ne correspondent pas aux statistiques réelles du Pokémon. 
+De plus, les IV des Pokémon générés par le code de RocketPokemonFactory ne peuvent avoir que deux valeurs, 0 ou 1, ce qui ne correspond pas non plus aux statistiques réelles du Pokémon.
 
-L'ensemble des sujets de TPs peut être trouvé dans le dossier `TPs`.
-
-Le dossier `src` contient la définition de l'ensemble des interfaces qui seront l'objet de vos travaux.
-
-## Rendus
-
-Le rendu des TPs se fait au rythme suivant :
-
-- TP1 : 1ère séance
-- TP2 : 2ème séance
-- TP3 : 3ème séance
-- TP4 : 5ème séance
-- TP5 : dernière séance
-- TP6 : dernière séance
-
-Pour chaque rendu, le projet dans son intégralité doit être déposé sur la plateforme.
-
-[^1]: Si vous n’êtes vraiment pas à l’aise avec cet outil nous vous conseillons quand même vivement de vous y mettre.
+Et enfin, j'ai modifié les tests de l'implémentation RocketPokemonFactory pour qu'ils fonctionnent avec ses particularités.
